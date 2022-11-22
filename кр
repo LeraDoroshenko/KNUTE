@@ -1,0 +1,51 @@
+import math
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import integrate
+
+speed=[25,35,45,30,60,120,100,100,70,75,80,65]
+time=np.linspace(0,11,12)
+
+print('Масив часу:',time)
+
+plt.title('Графік точок швидкості')
+plt.plot(time,speed)
+plt.xticks(np.arange(0,12,1))
+plt.yticks(np.arange(0,140,10))
+plt.xlabel('time')
+plt.ylabel('speed')
+plt.grid()
+plt.show()
+
+f=interp1d(time,speed,kind='cubic')
+time1=np.linspace(0,11,10000)
+speed1=f(time1)
+
+plt.plot(time1,speed1)
+plt.xticks(np.arange(0,12,1))
+plt.yticks(np.arange(0,140,10))
+plt.xlabel('time')
+plt.ylabel('speed')
+plt.grid()
+plt.show()
+
+s = integrate.simps(speed1,time1)
+print(f'{s:.1f} км')
+
+
+
+
+f=interp1d(time,speed,kind='quadratic')
+time1=np.linspace(0,11,10000)
+speed1=f(time1)
+
+plt.plot(time1,speed1)
+plt.xticks(np.arange(0,12,1))
+plt.yticks(np.arange(0,140,10))
+plt.xlabel('time')
+plt.ylabel('speed')
+plt.grid()
+plt.show()
+
+s = integrate.simps(speed1,time1)
+print(f'{s:.1f} км')
