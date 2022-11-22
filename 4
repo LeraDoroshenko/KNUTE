@@ -1,0 +1,92 @@
+#1(1.1)
+import numpy as np
+a = np.array([[1, 2], [4, -1]])
+b = np.array([[2, -3], [-4, 1]])
+c = a.dot(b)
+d = b.dot(a)
+e = c - d
+print(e)
+
+#1(2.1)
+a = np.array([[-1, 2], [0, 1]])
+a = np.linalg.matrix_power(a, 2)
+print(a)
+
+#1(3.1)
+a = np.array([[3, 5], [6, -1]])
+b = np.array([[2, 1], [-3, 2]])
+c = a.dot(b)
+print(c)
+
+#1(4.1)
+a = np.array([[2, 3, 4], [1, 0, 6], [7, 8, 9]])
+a_det = np.linalg.det(a)
+print(format(a_det,'9g'))
+
+#1(5.2)
+a = np.array([[2, 3, 4, 1], [1, 2, 3, 4], [3, 4, 1, 2], [4, 1, 2, 3]])
+a_det = np.linalg.det(a)
+print(format(a_det,'9g'))
+
+#1(6.1)
+a = np.array([[1, 2, -3], [0, 1, 2], [0, 0, 1]])
+a_inv = np.linalg.inv(a)
+print(a_inv)
+#1(7.1)
+a = np.array([[1, 2, 3, 4], [3, -1, 2, 5], [1, 2, 3, 4], [1, 3, 4, 5]])
+rank = np.linalg.matrix_rank(a)
+print(rank)
+
+#1(8.10.1)
+a = np.array([[3, 2, 1], [2, -1, 1], [1, 5, 0]])
+b = np.array([[5], [6], [-3]])
+print('a=', a)
+print('b=', b)
+a_inv = np.linalg.inv(a)
+print(a_inv)
+x = a_inv.dot(b)
+print('x=', x)
+
+#1(8.10.2)
+a = np.array([[3, 2, 1], [2, -1, 1], [1, 5, 0]])
+b = np.array([[5], [6], [-3]])
+print('a=', a)
+print('b=', b)
+def kramer (a, b):
+    a_det = np.linalg.det(a)
+    print('Детермінант матриці = ', a_det)
+    if (a_det != 0):
+        print ('Розв`язуємо систему')
+        x_m = np.matrix(a)
+        x_m[:, 0] = b
+        print('x_m=', x_m)
+        y_m = np.matrix(a) 
+        y_m[:, 1] = b 
+        print('y_m=',y_m)
+        z_m = np.matrix(a)
+        z_m[:, 2] = b
+        print('z_m=',z_m)
+        x = np.linalg.det(x_m) / a_det
+        y = np.linalg.det(y_m) / a_det
+        z = np.linalg.det(z_m) / a_det
+        print('x=', round(x,5))
+        print('y=', round(y,5))
+        print('z=', round(z,5))
+    else:
+        print('Розв`язків немає')
+kramer (a, b)
+
+x = np.linalg.solve(a, b)
+print('Перевірка х=', x)
+
+#2.3
+import numpy as np
+import random
+n = 3
+m = 4
+a = np.random.randint(0, 100, size=(n, m))
+print(a)
+rows = np.mean(a, axis=1)
+print('rows:', rows)
+cols = np.mean(a, axis=0)
+print('cols:', cols)
