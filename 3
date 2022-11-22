@@ -1,0 +1,67 @@
+import numpy as np
+import math
+from scipy.misc import derivative
+
+def f(x):
+  return x**4-108*x+7
+  
+eps = 0.0001
+
+def nuton(a,b,eps):
+  df2 = derivative(f, b, n = 2)
+  if (f(b)*df2>0):
+    xi = b
+  else:
+    xi = a
+  df = derivative(f,xi, n= 1)
+  xi_1 = xi - f(xi)/df
+  while (abs(xi_1 - xi)>eps):
+    xi = xi_1
+    xi_1 = xi - f(xi)/df
+  return print ('Solving the equation by Newton*s method x = ', xi_1)
+nuton (0,3,eps)
+nuton (3,5,eps)
+
+
+
+
+def f(x):
+  return x**4-108*x+7
+  
+def dif_f(x):
+  return 4*x**3-108
+  
+if __name__ == '__main__':
+  eps = 0.001
+  intervals = [[0, 3]]
+  for interval in intervals:
+    x1 = interval[0]
+    x2 = interval[1]
+    while True:
+      x1 = x1-f(x1)/dif_f(x1)
+      x2 = x1-((x2-x1)*f(x1)/(f(x2)-f(x1)))
+      if abs(x2-x1) < eps:
+        break
+    print('x = {0}'.format((x1+x2)/2))
+    
+    
+    
+    
+def f(x):
+  return x**4-108*x+7
+  
+def dif_f(x):
+  return 4*x**3-108
+  
+if __name__ == '__main__':
+  eps = 0.001
+  intervals = [[3, 5]]
+  for interval in intervals:
+    x1 = interval[1]
+    x2 = interval[1]
+    while True:
+      x1 = x1-f(x1)/dif_f(x1)
+      x2 = x1-((x2-x1)*f(x1)/(f(x2)-f(x1)))
+      if abs(x2-x1) < eps:
+        break
+    print('x = {0}'.format((x1+x2)/2))
